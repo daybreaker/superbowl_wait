@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  type: 
+  current_wait_time: MyString
+  current_report_time: 2013-01-11 23:21:41
+  lat: 1
+  long: 1
+  closest_section: 1
+
+two:
+  type: 
+  current_wait_time: MyString
+  current_report_time: 2013-01-11 23:21:41
+  lat: 1
+  long: 1
+  closest_section: 1
