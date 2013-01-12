@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  section_number: 1
+  x: 1
+  y: 1
+
+two:
+  section_number: 1
+  x: 1
+  y: 1
