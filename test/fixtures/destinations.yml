@@ -11,6 +11,8 @@
 #  closest_section     :integer
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
+#  name                :string(255)
+#  description         :text
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
