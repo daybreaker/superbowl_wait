@@ -5,9 +5,10 @@ class SectionController < ApplicationController
   end
   
   
-  def show
-    @section = params[:section]
-    @nearest = Destination.nearest_to_section(@section)
+   def show
+    chunk = Section.find_by_section_number(params[:id]).chunk
+    redirect_to :controller => chunk, :action => show, :chunk => chunk
+
   end
 
 end

@@ -12,5 +12,8 @@
 #
 
 class Section < ActiveRecord::Base
-  attr_accessible :section_number, :x, :y
+  attr_accessible :section_number, :x, :y, :chunk
+
+ 
+
 end
