@@ -1,0 +1,7 @@
+.time-entry
+  = form_for @destination do |f|
+    = f.radio_button :current_wait_time, "low"
+    = f.radio_button :current_wait_time, "medium"
+    = f.radio_button :current_wait_time, "high"
+    = f.radio_button :current_wait_time, "very high"
+    = f.submit

@@ -5,4 +5,8 @@ class Destination < ActiveRecord::Base
     ['men', 'women', 'family', 'concession']
   end
 
+  def current_wait_time_enum
+    ['low', 'medium', 'high', 'very high']
+  end
+  
 end

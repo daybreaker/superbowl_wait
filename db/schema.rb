@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130112052141) do
+ActiveRecord::Schema.define(:version => 20130112071655) do
 
   create_table "destinations", :force => true do |t|
     t.string   "destination_type"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20130112052141) do
     t.integer  "closest_section"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "name"
+    t.text     "description"
   end
 
   create_table "rails_admin_histories", :force => true do |t|
