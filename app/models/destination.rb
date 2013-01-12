@@ -16,8 +16,8 @@
 #
 
 class Destination < ActiveRecord::Base
-  attr_accessible :closest_section, :current_report_time, :current_wait_time, :lat, :long, :destination_type
-  
+ attr_accessible :closest_section, :current_report_time, :current_wait_time, :lat, :long, :destination_type, :name, :description
+
   belongs_to :section, :foreign_key => :closest_section, :primary_key => :section_number
   
   WAIT_TIMES = {
@@ -26,7 +26,7 @@ class Destination < ActiveRecord::Base
     "high" => 3,
     "very high" => 4,
   }
-  
+   
   def destination_type_enum
     ['men', 'women', 'family', 'concession']
   end
@@ -38,5 +38,5 @@ class Destination < ActiveRecord::Base
   def current_wait_time_enum
     WAIT_TIMES.collect{ |k,v| k }
   end
-  
+
 end
