@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(:version => 20130112052550) do
 
   create_table "destinations", :force => true do |t|
-    t.string   "type"
+    t.string   "destination_type"
     t.string   "current_wait_time"
     t.datetime "current_report_time"
     t.integer  "lat"
