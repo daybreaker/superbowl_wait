@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130112164000) do
+ActiveRecord::Schema.define(:version => 20130112173312) do
+
+  create_table "chunks", :force => true do |t|
+    t.integer  "chunk_number"
+    t.integer  "next_chunk"
+    t.integer  "prev_chunk"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "chunks_sections", :id => false, :force => true do |t|
+    t.integer "chunk_id"
+    t.integer "section_id"
+  end
 
   create_table "destinations", :force => true do |t|
     t.string   "destination_type"
@@ -45,7 +58,6 @@ ActiveRecord::Schema.define(:version => 20130112164000) do
     t.integer  "y"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-    t.string   "chunk"
   end
 
   create_table "users", :force => true do |t|
