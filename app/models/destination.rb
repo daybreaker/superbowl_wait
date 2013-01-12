@@ -24,4 +24,8 @@ class Destination < ActiveRecord::Base
       find(:first, :order => "ABS(closest_section - #{section}) ASC")
   end
 
+  def current_wait_time_enum
+    ['low', 'medium', 'high', 'very high']
+  end
+  
 end

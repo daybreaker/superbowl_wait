@@ -4,6 +4,7 @@ Superbowl::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
   
   match 'show' => 'section#show'
- 
+  match 'destinations/manual_entry' => 'catalog#view'
+  
   root :to => 'section#index'
 end
