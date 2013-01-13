@@ -7,7 +7,11 @@ class SectionController < ApplicationController
   
   def show
     @section = params[:section]
-    @nearest = Destination.nearest_to_section(@section)
+
+  end
+  
+  def get_image
+    render :layout => false
   end
 
 end

@@ -1,0 +1,48 @@
+[1mdiff --git a/app/assets/javascripts/section.js b/app/assets/javascripts/section.js[m
+[1mindex ae3ac62..16c1b61 100644[m
+[1m--- a/app/assets/javascripts/section.js[m
+[1m+++ b/app/assets/javascripts/section.js[m
+[36m@@ -17,5 +17,5 @@[m [m$(function(){[m
+       return false;[m
+     }[m
+   })[m
+[31m-[m
+[32m+[m[41m  [m
+ });[m
+[1mdiff --git a/app/controllers/section_controller.rb b/app/controllers/section_controller.rb[m
+[1mindex 4df80fe..fb29e2d 100644[m
+[1m--- a/app/controllers/section_controller.rb[m
+[1m+++ b/app/controllers/section_controller.rb[m
+[36m@@ -7,7 +7,11 @@[m [mclass SectionController < ApplicationController[m
+   [m
+   def show[m
+     @section = params[:section][m
+[31m-    @nearest = Destination.nearest_to_section(@section)[m
+[32m+[m
+[32m+[m[32m  end[m
+[32m+[m[41m  [m
+[32m+[m[32m  def get_image[m
+[32m+[m[32m    render :layout => false[m
+   end[m
+ [m
+ end[m
+[1mdiff --git a/app/views/section/show.html.haml b/app/views/section/show.html.haml[m
+[1mindex 195b475..179e963 100644[m
+[1m--- a/app/views/section/show.html.haml[m
+[1m+++ b/app/views/section/show.html.haml[m
+[36m@@ -1,2 +1,2 @@[m
+ %h2= "Wait times for Section #{@section}"[m
+[31m-= @nearest.closest_section[m
+[32m+[m[32m<img id="superdome_bg" alt="Superdome BG" src="" />[m
+[1mdiff --git a/config/routes.rb b/config/routes.rb[m
+[1mindex f28c98d..1c87279 100644[m
+[1m--- a/config/routes.rb[m
+[1m+++ b/config/routes.rb[m
+[36m@@ -4,6 +4,7 @@[m [mSuperbowl::Application.routes.draw do[m
+   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'[m
+   [m
+   match 'show' => 'section#show'[m
+[32m+[m[32m  match 'get_image' => 'section#get_image'[m
+   match 'destinations/manual_entry' => 'catalog#view'[m
+   [m
+   root :to => 'section#index'[m
