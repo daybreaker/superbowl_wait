@@ -36,7 +36,7 @@ class Destination < ActiveRecord::Base
   end
 
   def self.destination_type_enum
-    %w(men women concession family)
+    %w(gate men women concession family)
   end
 
 end
