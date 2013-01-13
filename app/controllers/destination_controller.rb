@@ -13,8 +13,9 @@ class DestinationController < ApplicationController
     section = Section.find_by_section_number(params[:section_number]) if params[:section_number].present?
     @destination = section.destinations.where(:destination_type => params[:destination][:destination_type]).first unless section.nil?
     if @destination.present? 
-      @destination.update_attributes(:current_wait_time => params[:destination][:current_wait_time], 
-        :current_report_time => Time.now)
+      @destination.update_attributes(
+        :current_wait_time => params[:destination][:current_wait_time].to_i, 
+        :current_report_time => Time.now )
       @result = "destination updated"
     else
       @result = "destination could not be found"

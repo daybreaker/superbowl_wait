@@ -26,10 +26,6 @@ class Destination < ActiveRecord::Base
     "high" => 3,
     "very high" => 4,
   }
-   
-  def destination_type_enum
-    ['men', 'women', 'family', 'concession']
-  end
   
   def self.nearest_to_section(section)
       find(:first, :order => "ABS(closest_section - #{section}) ASC")

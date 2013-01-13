@@ -6,7 +6,7 @@ class Chunk < ActiveRecord::Base
   
   def average_wait_time
     dests = sections.flat_map(&:destinations)
-    dests.sum{|x| Destination::WAIT_TIMES[x.current_wait_time] }.to_f / dests.count.to_f
+    dests.sum{|x| x.current_wait_time }.to_f / dests.count.to_f
   end
 
 end
