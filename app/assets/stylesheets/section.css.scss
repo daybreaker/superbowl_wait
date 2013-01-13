@@ -1,3 +1,22 @@
 // Place all the styles related to the section controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#superdome_bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#destinations{
+  position: relative;
+  
+  .destination{
+    position: absolute;
+    display: block;
+    height: 30px;
+    width: 30px;
+    background-color: green;
+  }
+
+}

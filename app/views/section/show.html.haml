@@ -1,14 +1,12 @@
-<img id="superdome_bg" alt="Superdome BG" src="" />
+%img{:id => "superdome_bg", :alt => "Superdome BG", :src => ""}
+
+#destinations
+  -@destinations.each do |dest|
+    %a{:class => "destination", :style => "top: #{scale_y(dest.lat)}px; left: #{scale_x(dest.long)}px;", :href => "javascript://" }
+
 #sectionNumber
   - unless @section.nil?
     %h2= "Wait times for Section #{@section.section_number}"
-    - @section.chunks.each do |c|
-      %div= "chunk #{c.chunk_number}, wait time = #{c.average_wait_time}" 
-    %h2= "Best chunk for Section #{@section.section_number}" 
-    - c = @section.chunk_with_lowest_wait
-    = "chunk with lowest wait = #{c.chunk_number}, wait time = #{c.average_wait_time}" 
-    %h2= "Map coordinates for Section #{@section.section_number}"
-    = "x = #{@section.x}, y = #{@section.y}"
     %div
       %button#changeSection= "change Section"
 
