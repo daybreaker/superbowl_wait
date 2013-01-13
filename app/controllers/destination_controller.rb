@@ -10,7 +10,6 @@ class DestinationController < ApplicationController
   end
 
   def update
-    Pusher['my-channel'].trigger('my-event', {:message => 'hello world'})
     section = Section.find_by_section_number(params[:section_number]) if params[:section_number].present?
     @destination = section.destinations.where(:destination_type => params[:destination][:destination_type]).first unless section.nil?
     if @destination.present? 
@@ -18,6 +17,7 @@ class DestinationController < ApplicationController
         :current_wait_time => params[:destination][:current_wait_time].to_i, 
         :current_report_time => Time.now )
       @result = "destination updated"
+      Pusher['observations'].trigger('observation', @destination)
     else
       @result = "destination could not be found"
     end
