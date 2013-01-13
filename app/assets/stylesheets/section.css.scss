@@ -71,9 +71,18 @@ body {
     .destination{
       position: absolute;
       display: block;
-      height: 30px;
+      height: 29px;
       width: 30px;
       background-color: transparent;
+      text-decoration: none;
+      .name{
+        color: white;
+        vertical-align: middle;
+        width: 40px;
+        font-size: 26px;
+        line-height: 30px;
+        padding: 0 0 0 4px;
+      }
       
       &.men {
         &.low{
@@ -129,6 +138,20 @@ body {
         }
         &.very_high{
           background-image: url('concession-very_high.png');
+        }
+      }
+      &.gate {
+        &.low{
+          background-image: url('gate-low.png');
+        }
+        &.medium{
+          background-image: url('gate-medium.png');
+        }
+        &.high{
+          background-image: url('gate-high.png');
+        }
+        &.very_high{
+          background-image: url('gate-very_high.png');
         }
       }
     }
