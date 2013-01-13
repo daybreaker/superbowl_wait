@@ -6,7 +6,8 @@ Superbowl::Application.routes.draw do
   match 'show/:section' => 'section#show'
   match 'show' => 'section#show'
   match 'get_image' => 'section#get_image'
-  match 'destinations/manual_entry' => 'catalog#view'
+  get 'observation' => 'destination#observation'
+  post 'observation' => 'destination#update'
   
   root :to => 'section#index'
 end

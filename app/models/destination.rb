@@ -35,8 +35,12 @@ class Destination < ActiveRecord::Base
       find(:first, :order => "ABS(closest_section - #{section}) ASC")
   end
 
-  def current_wait_time_enum
-    WAIT_TIMES.collect{ |k,v| k }
+  def self.current_wait_time_enum
+    WAIT_TIMES
+  end
+
+  def self.destination_type_enum
+    %w(men women concession family)
   end
 
 end

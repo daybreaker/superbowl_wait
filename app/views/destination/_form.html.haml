@@ -1,7 +1,6 @@
 .time-entry
-  = form_for @destination do |f|
-    = f.radio_button :current_wait_time, "low"
-    = f.radio_button :current_wait_time, "medium"
-    = f.radio_button :current_wait_time, "high"
-    = f.radio_button :current_wait_time, "very high"
-    = f.submit
+  = form_for :destination do |f|
+    %div= text_field_tag :section_number
+    %div= f.select :destination_type, Destination.destination_type_enum
+    %div= f.select :current_wait_time, Destination.current_wait_time_enum
+    %div= f.submit
