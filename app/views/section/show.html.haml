@@ -8,7 +8,7 @@
 
   #destinations
     -@destinations.each do |dest|
-      %a{:class => classify(dest), :style => "top: #{scale_y(dest.lat)}px; left: #{scale_x(dest.long)}px;", :href => "javascript://" }
+      %a{:class => classify(dest), :style => "top: #{scale_y(dest.lat)}px; left: #{scale_x(dest.long)}px;", :href => "javascript://", :title => dest.current_report_time.to_s }
 
 #sectionForm
   %h2
