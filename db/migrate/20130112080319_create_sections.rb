@@ -7,5 +7,6 @@ class CreateSections < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :sections, :section_number,   :unique => true
   end
 end

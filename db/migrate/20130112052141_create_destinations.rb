@@ -7,6 +7,8 @@ class CreateDestinations < ActiveRecord::Migration
       t.integer :lat
       t.integer :long
       t.integer :closest_section
+      t.string :name
+      t.text :description
 
       t.timestamps
     end
