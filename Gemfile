@@ -8,6 +8,7 @@ gem 'pg'
 gem "thin"
 
 gem 'annotate'
+gem 'pusher'
 
 # Gems used only for assets and not required
 # in production environments by default.
