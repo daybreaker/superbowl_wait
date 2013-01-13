@@ -5,12 +5,13 @@
     %meta{ :content => "", :name => "description" }
     %meta{ :content => "", :name => "author" }
     %meta{ :content => "3 days", :name => "revisit-after" }
+    %meta{name: "viewport",  content: "width=device-width; initial-scale=1.0"}
     %link{ :href => "http://creativecommons.org/licenses/by/3.0/", :rel => "license", :title => "Creative Commons Attribution 3.0 Unported License" }
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
     %script{ :src => "http://js.pusher.com/1.12/pusher.min.js", :type => "text/javascript" }
-  %body{:class => "#{@body_class}"}
+  %body
 
   %p.notice
     = notice
