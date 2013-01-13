@@ -19,7 +19,7 @@ class Section < ActiveRecord::Base
 
   SUPERDOME_IMAGE = {
     :width => 1530,
-    :height => 1560  
+    :height => 1540  
   }
 
   def chunk_with_lowest_wait
