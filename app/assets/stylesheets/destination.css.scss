@@ -1,3 +1,13 @@
 // Place all the styles related to the destination controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body.observation {
+  width:300px;
+  height:500px;
+  font-size:16px;
+  option {
+    height:25px;
+    width:150px;
+  }
+}

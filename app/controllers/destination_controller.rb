@@ -1,6 +1,7 @@
 class DestinationController < ApplicationController
 
   def observation
+    @body_class = "observation"
     @result = params[:result].present? ? params[:result] : "Enter An Observation"
     if params[:destination_id].present?
       @destination = Destination.find(params[:destination_id]) 
@@ -10,6 +11,7 @@ class DestinationController < ApplicationController
   end
 
   def update
+    @body_class = "observation"
     section = Section.find_by_section_number(params[:section_number]) if params[:section_number].present?
     @destination = section.destinations.where(:destination_type => params[:destination][:destination_type]).first unless section.nil?
     if @destination.present? 

@@ -1,4 +1,5 @@
-%div= @result
-- unless @destination.nil?
-  %div= render :partial => 'destination'
-%div= render :partial => 'form'
+#observation
+  %div= @result
+  - unless @destination.nil?
+    %div= render :partial => 'destination'
+  %div= render :partial => 'form'
