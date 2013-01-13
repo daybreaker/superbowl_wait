@@ -7,5 +7,6 @@ class CreateChunks < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :chunks, :chunk_number,   :unique => true
   end
 end
