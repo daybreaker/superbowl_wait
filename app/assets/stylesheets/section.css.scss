@@ -117,6 +117,20 @@ body {
           background-image: url('fam-very_high.png');
         }
       }
+      &.concession {
+        &.low{
+          background-image: url('concession-low.png');
+        }
+        &.medium{
+          background-image: url('concession-medium.png');
+        }
+        &.high{
+          background-image: url('concession-high.png');
+        }
+        &.very_high{
+          background-image: url('concession-very_high.png');
+        }
+      }
     }
 
   }
