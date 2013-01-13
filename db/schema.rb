@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(:version => 20130112173312) do
     t.datetime "updated_at",   :null => false
   end
 
+  add_index "chunks", ["chunk_number"], :name => "index_chunks_on_chunk_number", :unique => true
+
   create_table "chunks_sections", :id => false, :force => true do |t|
     t.integer "chunk_id"
     t.integer "section_id"
@@ -33,10 +35,10 @@ ActiveRecord::Schema.define(:version => 20130112173312) do
     t.integer  "lat"
     t.integer  "long"
     t.integer  "closest_section"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
     t.string   "name"
     t.text     "description"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "rails_admin_histories", :force => true do |t|
@@ -59,6 +61,8 @@ ActiveRecord::Schema.define(:version => 20130112173312) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
+
+  add_index "sections", ["section_number"], :name => "index_sections_on_section_number", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

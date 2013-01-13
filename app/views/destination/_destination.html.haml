@@ -1,5 +1,8 @@
 .destination-info
-  = @destination.destination_type
-  = @destination.closest_section
-  = @destination.current_wait_time
-  = @destination.current_report_time
+  %div= @destination.destination_type
+  %div= @destination.closest_section
+  %div= @destination.current_wait_time
+  %div= @destination.current_report_time
+
+%div
+  Enter Another Observation
