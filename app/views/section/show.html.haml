@@ -1,2 +1,22 @@
-%h2= "Wait times for Section #{@section}"
 <img id="superdome_bg" alt="Superdome BG" src="" />
+#sectionNumber
+  - unless @section.nil?
+    %h2= "Wait times for Section #{@section.section_number}"
+    - @section.chunks.each do |c|
+      %div= "chunk #{c.chunk_number}, wait time = #{c.average_wait_time}" 
+    %h2= "Best chunk for Section #{@section.section_number}" 
+    - c = @section.chunk_with_lowest_wait
+    = "chunk with lowest wait = #{c.chunk_number}, wait time = #{c.average_wait_time}" 
+    %h2= "Map coordinates for Section #{@section.section_number}"
+    = "x = #{@section.x}, y = #{@section.y}"
+    %div
+      %button#changeSection= "change Section"
+
+#sectionForm
+  %h2
+    Choose Your Section
+
+  = form_tag('/show') do
+    = text_field_tag 'section'
+    = submit_tag "Go"
+

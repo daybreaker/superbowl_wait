@@ -14,8 +14,33 @@ $(function(){
     
     if (success !== true) {
       alert("You have entered an invalid section number.");
-      return false;
     }
-  })
-  
+
+    else {
+      localStorage.setItem('homeSection', numbers);
+    }
+    return success;
+  });
+
+  function toggleSectionInput() {
+    numbers = localStorage.getItem('homeSection');
+    if (numbers == null) {
+      $('#sectionNumber').hide();
+      $('#sectionForm').show()
+    } else {
+      if ($('.chooseSection').length > 0) {
+        window.location.replace("/show/" + parseInt(numbers))
+      }
+      $('#sectionNumber').show();
+      $('#sectionForm').hide();
+    }
+  }
+
+  toggleSectionInput();
+
+  $('#changeSection').click(function() {
+    localStorage.removeItem('homeSection');
+    toggleSectionInput();
+  });
+
 });

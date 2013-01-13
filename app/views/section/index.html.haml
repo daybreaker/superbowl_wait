@@ -1,6 +1,7 @@
-%h2
-  Choose Your Section
+#sectionForm.chooseSection{:style => "display:none;"}
+  %h2
+    Choose Your Section
 
-= form_tag('/show') do
-  = text_field_tag 'section'
-  = submit_tag "Go"
+  = form_tag('/show') do
+    = text_field_tag 'section'
+    = submit_tag "Go"
