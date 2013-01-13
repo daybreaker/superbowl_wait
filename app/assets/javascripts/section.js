@@ -42,5 +42,14 @@ $(function(){
     localStorage.removeItem('homeSection');
     toggleSectionInput();
   });
+  
+  var dest = $('a.destination')
+  dest.tooltip();
+  
+  
+  dest.on('click', function(){ 
+    $(this).tooltip("open");
+  });
+  
 
 });

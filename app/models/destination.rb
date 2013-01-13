@@ -32,7 +32,7 @@ class Destination < ActiveRecord::Base
   end
 
   def self.current_wait_time_enum
-    WAIT_TIMES
+    WAIT_TIMES.collect{|k,v| [k,k.gsub(" ","_")]}
   end
 
   def self.destination_type_enum

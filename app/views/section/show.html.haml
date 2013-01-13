@@ -1,20 +1,32 @@
 #head
   %h1="Dome Wait"
-  %button.icon-cog.icon-2x
-  %button.icon-screenshot.icon-2x
+  -#%button.icon-cog.icon-2x
+  -#%button.icon-screenshot.icon-2x
 
 #map
   %img{:id => "superdome_bg", :alt => "Superdome BG", :src => ""}
 
   #destinations
     -@destinations.each do |dest|
-      %a{:class => classify(dest), :style => "top: #{scale_y(dest.lat)}px; left: #{scale_x(dest.long)}px;", :href => "javascript://" }
+      %a{:id =>"destination_#{dest.id.to_s}", :class => classify(dest), :style => "top: #{scale_y(dest.lat)}px; left: #{scale_x(dest.long)}px;", :href => "javascript://", :title => dest.current_report_time.to_s }
 
-#sectionForm
-  %h2
-    Choose Your Section
 
-  = form_tag('/show') do
-    = text_field_tag 'section'
-    = submit_tag "Go"
+#pusher-key{:style => "display:none"}= Pusher.key
+:javascript
+
+  // Enable pusher logging - don't include this in production
+  Pusher.log = function(message) {
+    if (window.console && window.console.log) window.console.log(message);
+  };
+
+  // Flash fallback logging - don't include this in production
+  WEB_SOCKET_DEBUG = true;
+
+  var pusher = new Pusher($('#pusher-key').text());
+  var channel = pusher.subscribe('observations');
+  channel.bind('observation', function(data) {
+    dest = $("#destination_" + data.id);
+    dest.removeClass('low medium high very_high');
+    dest.addClass(data.current_wait_time);
+  });
 
