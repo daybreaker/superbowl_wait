@@ -14,7 +14,7 @@ class DestinationController < ApplicationController
     @destination = section.destinations.where(:destination_type => params[:destination][:destination_type]).first unless section.nil?
     if @destination.present? 
       @destination.update_attributes(
-        :current_wait_time => params[:destination][:current_wait_time].to_i, 
+        :current_wait_time => params[:destination][:current_wait_time], 
         :current_report_time => Time.now )
       @result = "destination updated"
       Pusher['observations'].trigger('observation', @destination)

@@ -9,5 +9,5 @@ Superbowl::Application.routes.draw do
   get 'observation' => 'destination#observation'
   post 'observation' => 'destination#update'
   
-  root :to => 'section#index'
+  root :to => 'section#show'
 end
