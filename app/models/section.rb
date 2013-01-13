@@ -17,6 +17,11 @@ class Section < ActiveRecord::Base
   has_and_belongs_to_many :chunks
   has_many :destinations, :foreign_key => :closest_section, :primary_key => :section_number
 
+  SUPERDOME_IMAGE = {
+    :width => 1730,
+    :height => 1730  
+  }
+
   def chunk_with_lowest_wait
     chunks.min{ |x,y| x.average_wait_time <=> y.average_wait_time }
   end
