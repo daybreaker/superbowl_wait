@@ -1,11 +1,11 @@
 module DestinationHelper
   def scale_x(point)
-    # 15px to offset width and center image
-    point * Section::SUPERDOME_IMAGE[:width] / 100 - 15
+    # image x,y based on 100x100 grid. This lets us scale it automatically + a little fudge factor
+    point * Section::SUPERDOME_IMAGE[:width] / 100 + 70
   end
   
   def scale_y(point)
-    # 15px to offset height and center image
-    point * Section::SUPERDOME_IMAGE[:height] / 100 - 15
+    # image x,y based on 100x100 grid. This lets us scale it automatically + a little fudge factor
+    point * Section::SUPERDOME_IMAGE[:height] / 100 + 60
   end
 end

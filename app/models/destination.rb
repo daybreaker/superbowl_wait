@@ -27,6 +27,11 @@ class Destination < ActiveRecord::Base
     "very high" => 4,
   }
   
+  def classify
+    current_wait_time ||= 'low'
+    "destination + #{destination_type} + #{current_wait_time}"
+  end
+  
   def self.nearest_to_section(section)
       find(:first, :order => "ABS(closest_section - #{section}) ASC")
   end

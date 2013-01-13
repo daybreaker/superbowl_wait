@@ -1,14 +1,14 @@
-%img{:id => "superdome_bg", :alt => "Superdome BG", :src => ""}
+#head
+  %h1="Dome Wait"
+  %button.icon-cog.icon-2x
+  %button.icon-screenshot.icon-2x
 
-#destinations
-  -@destinations.each do |dest|
-    %a{:class => "destination", :style => "top: #{scale_y(dest.lat)}px; left: #{scale_x(dest.long)}px;", :href => "javascript://" }
+#map
+  %img{:id => "superdome_bg", :alt => "Superdome BG", :src => ""}
 
-#sectionNumber
-  - unless @section.nil?
-    %h2= "Wait times for Section #{@section.section_number}"
-    %div
-      %button#changeSection= "change Section"
+  #destinations
+    -@destinations.each do |dest|
+      %a{:class => dest.classify, :style => "top: #{scale_y(dest.lat)}px; left: #{scale_x(dest.long)}px;", :href => "javascript://" }
 
 #sectionForm
   %h2

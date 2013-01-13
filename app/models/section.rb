@@ -18,8 +18,8 @@ class Section < ActiveRecord::Base
   has_many :destinations, :foreign_key => :closest_section, :primary_key => :section_number
 
   SUPERDOME_IMAGE = {
-    :width => 1730,
-    :height => 1730  
+    :width => 1530,
+    :height => 1560  
   }
 
   def chunk_with_lowest_wait
