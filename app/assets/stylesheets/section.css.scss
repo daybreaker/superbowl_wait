@@ -75,9 +75,46 @@ body {
       width: 30px;
       background-color: transparent;
       
-      &.mens {
+      &.men {
         &.low{
           background-image: url('man-low.png');
+        }
+        &.medium{
+          background-image: url('man-medium.png');
+        }
+        &.high{
+          background-image: url('man-high.png');
+        }
+        &.very_high{
+          background-image: url('man-very_high.png');
+        }
+      }
+      &.women {
+        &.low{
+          background-image: url('woman-low.png');
+        }
+        &.medium{
+          background-image: url('woman-medium.png');
+        }
+        &.high{
+          background-image: url('woman-high.png');
+        }
+        &.very_high{
+          background-image: url('woman-very_high.png');
+        }
+      }
+      &.family {
+        &.low{
+          background-image: url('fam-low.png');
+        }
+        &.medium{
+          background-image: url('fam-medium.png');
+        }
+        &.high{
+          background-image: url('fam-high.png');
+        }
+        &.very_high{
+          background-image: url('fam-very_high.png');
         }
       }
     }
