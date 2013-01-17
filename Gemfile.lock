@@ -171,6 +171,7 @@ DEPENDENCIES
   devise
   haml
   jquery-rails
+  json
   pg
   pusher
   rails (= 3.2.11)
