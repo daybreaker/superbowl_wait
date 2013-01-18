@@ -7,7 +7,6 @@ class DestinationController < ApplicationController
   def show
     @destination = Destination.find_by_unique_id(params[:unique_id])
     @updates = Update.find_by_destination_unique_id(@destination.unique_id) unless @destination.nil?
-debugger    
   end
 
   def observation
@@ -19,7 +18,6 @@ debugger
       @destination = Destination.new
     end
     @destinations = Destination.all
-debugger    
   end
 
   def update
@@ -42,12 +40,11 @@ puts "\n**********************************************************\n"
         destination.update_attributes(:current_status => status, 
           :source => params[:from], :current_reported_time => Time.now)
       end
-debugger      
       render :text => '' and return
-    else  
+    else       
       # update received via our update form
       @body_class = "observation"
-      @destination = Destination.find_by_unique_id(params[:unique_id])
+      @destination = Destination.find_by_unique_id(params[:destination][:unique_id])
       if @destination.present? 
         @destination.update_attributes(
           :current_status => params[:destination][:current_status], 
