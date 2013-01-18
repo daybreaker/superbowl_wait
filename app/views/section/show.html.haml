@@ -9,6 +9,8 @@
   #destinations
     -@destinations.each do |dest|
       %a{:id =>"destination_#{dest.id.to_s}", :class => classify(dest), :style => "top: #{scale_y(dest.lat)}px; left: #{scale_x(dest.long)}px;", :href => "javascript://", :title => dest.current_report_time.to_s }
+        -if dest.name.present?
+          .name=dest.name
 
 
 #pusher-key{:style => "display:none"}= Pusher.key
