@@ -1,33 +1,63 @@
 class DestinationController < ApplicationController
 
+  def index
+    @destinations = Destination.all
+  end
+
+  def show
+    @destination = Destination.find_by_unique_id(params[:unique_id])
+    @updates = Update.find_by_destination_unique_id(@destination.unique_id) unless @destination.nil?
+debugger    
+  end
+
   def observation
     @body_class = "observation"
     @result = params[:result].present? ? params[:result] : "Enter An Observation"
-    if params[:destination_id].present?
-      @destination = Destination.find(params[:destination_id]) 
+    if params[:unique_id].present?
+      @destination = Destination.find_by_unique_id(params[:unique_id]) 
     else
-      Destination.new
+      @destination = Destination.new
     end
+    @destinations = Destination.all
+debugger    
   end
 
   def update
-    @body_class = "observation"
-    if params[:destination][:destination_type] == 'gate'
-      @destination = Destination.find_by_name(params[:section_number])
-    else
-      section = Section.find_by_section_number(params[:section_number]) if params[:section_number].present?
-      @destination = section.destinations.where(:destination_type => params[:destination][:destination_type]).first unless section.nil?
+puts "\n**********************************************************\n"   
+puts "params = #{params}"
+puts "\n**********************************************************\n" 
+    if params[:body].present? && params[:from].present?
+    # SMS message from Twilio received to webhook
+      unique_id = params[:body].chop
+      status = params[:body][unique_id.length]
+      destination = Destination.find_by_unique_id(unique_id)
+      unless destination.nil?
+        # make the update
+        unless destination.current_status.empty?
+          #save current values in history
+          Destination.updates.create(:source => destination.source, 
+            :reported_at => destination.current_report_time, 
+            :status => destination.current_status)
+        end
+        destination.update_attributes(:current_status => status, 
+          :source => params[:from], :current_reported_time => Time.now)
+      end
+debugger      
+      render :text => '' and return
+    else  
+      # update received via our update form
+      @body_class = "observation"
+      @destination = Destination.find_by_unique_id(params[:unique_id])
+      if @destination.present? 
+        @destination.update_attributes(
+          :current_status => params[:destination][:current_status], 
+          :current_report_time => Time.now )
+        @result = "destination updated"
+      else
+        @result = "destination could not be found"
+      end
+      redirect_to :controller => 'destination', :action => 'observation', :result => @result, :unique_id => @destination_unique_id and return
     end
-    if @destination.present? 
-      @destination.update_attributes(
-        :current_wait_time => params[:destination][:current_wait_time], 
-        :current_report_time => Time.now )
-      @result = "destination updated"
-      Pusher['observations'].trigger('observation', @destination)
-    else
-      @result = "destination could not be found"
-    end
-    redirect_to :controller => 'destination', :action => 'observation', :result => @result, :destination_id => @destination and return
   end
 
 end

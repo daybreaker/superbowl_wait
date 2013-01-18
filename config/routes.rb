@@ -2,12 +2,11 @@ Superbowl::Application.routes.draw do
   devise_for :users
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-  
-  match 'show/:section' => 'section#show'
-  match 'show' => 'section#show'
-  match 'get_image' => 'section#get_image'
+ 
   get 'observation' => 'destination#observation'
+  get 'observation/:unique_id' => 'destination#observation'
   post 'observation' => 'destination#update'
+  get 'destination/:unique_id' => 'destination#show'
   
-  root :to => 'section#show'
+  root :to => 'destinations#index'
 end

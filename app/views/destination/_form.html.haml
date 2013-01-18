@@ -1,6 +1,5 @@
 .time-entry
   = form_for :destination do |f|
-    %div= text_field_tag :section_number
-    %div= f.select :destination_type, Destination.destination_type_enum
-    %div= f.select :current_wait_time, Destination.current_wait_time_enum
+    %div= f.select :unique_id, @destinations.collect(&:unique_id)
+    %div= f.select :current_status, %w(1 2 3)
     %div= f.submit

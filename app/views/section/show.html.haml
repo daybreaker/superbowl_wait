@@ -27,6 +27,6 @@
   channel.bind('observation', function(data) {
     dest = $("#destination_" + data.id);
     dest.removeClass('low medium high very_high');
-    dest.addClass(data.current_wait_time);
+    dest.addClass(data.current_status);
   });
 

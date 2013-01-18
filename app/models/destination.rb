@@ -2,41 +2,20 @@
 #
 # Table name: destinations
 #
-#  id                  :integer          not null, primary key
+#  unique_id           :string(255)
 #  destination_type    :string(255)
-#  current_wait_time   :string(255)
+#  current_status      :string(255)
 #  current_report_time :datetime
 #  lat                 :integer
 #  long                :integer
-#  closest_section     :integer
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
 #  name                :string(255)
 #  description         :text
+#  source              :string(255)
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #
 
 class Destination < ActiveRecord::Base
- attr_accessible :closest_section, :current_report_time, :current_wait_time, :lat, :long, :destination_type, :name, :description
-
-  belongs_to :section, :foreign_key => :closest_section, :primary_key => :section_number
-  
-  WAIT_TIMES = {
-    "low" => 1,
-    "medium" => 2,
-    "high" => 3,
-    "very high" => 4,
-  }
-  
-  def self.nearest_to_section(section)
-      find(:first, :order => "ABS(closest_section - #{section}) ASC")
-  end
-
-  def self.current_wait_time_enum
-    WAIT_TIMES.collect{|k,v| [k,k.gsub(" ","_")]}
-  end
-
-  def self.destination_type_enum
-    %w(gate men women concession family)
-  end
+ attr_accessible :unique_id, :current_report_time, :current_status, :lat, :long, :destination_type, :name, :description, :source
 
 end
