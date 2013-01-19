@@ -25,35 +25,40 @@ puts "\n**********************************************************\n"
 puts "params = #{params}"
 puts "\n**********************************************************\n" 
     if params[:body].present? && params[:from].present?
-    # SMS message from Twilio received to webhook
+      # SMS message from Twilio received to webhook
       unique_id = params[:body].chop
       status = params[:body][unique_id.length]
-      destination = Destination.find_by_unique_id(unique_id)
-      unless destination.nil?
-        # make the update
-        unless destination.current_status.empty?
-          #save current values in history
-          Destination.updates.create(:source => destination.source, 
-            :reported_at => destination.current_report_time, 
-            :status => destination.current_status)
-        end
-        destination.update_attributes(:current_status => status, 
-          :source => params[:from], :current_reported_time => Time.now)
+      source = params[:from]
+    elsif params[:destination][:unique_id].present?     
+      unique_id = params[:destination][:unique_id]
+      status = params[:destination][:current_status]
+      source = 'web'
+    else
+      @result = "destination could not be found"
+    end
+    destination = Destination.find_by_unique_id(unique_id)
+    if destination.nil?
+      @result = "destination could not be found"
+    else
+      # make the update
+      unless destination.current_status.empty?
+        #save current values in history
+        update = destination.updates.new
+        update.source = destination.source 
+        update.reported_at = destination.current_report_time 
+        update.status = destination.current_status
+        update.save
       end
-      render :text => '' and return
-    else       
-      # update received via our update form
-      @body_class = "observation"
-      @destination = Destination.find_by_unique_id(params[:destination][:unique_id])
-      if @destination.present? 
-        @destination.update_attributes(
-          :current_status => params[:destination][:current_status], 
-          :current_report_time => Time.now )
-        @result = "destination updated"
-      else
-        @result = "destination could not be found"
-      end
+      destination.current_status = status 
+      destination.source = source
+      destination.current_report_time = Time.now
+      destination.save
+      @result = "destination updated"
+    end
+    if source == 'web'
       redirect_to :controller => 'destination', :action => 'observation', :result => @result, :unique_id => @destination_unique_id and return
+    else
+      render :text => '' and return
     end
   end
 

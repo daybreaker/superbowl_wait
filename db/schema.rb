@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(:version => 20130117143719) do
 
   create_table "destinations", :force => true do |t|
-    t.string   "unique_id"
+    t.integer  "unique_id"
     t.string   "destination_type"
     t.string   "current_status"
     t.datetime "current_report_time"
@@ -43,15 +43,15 @@ ActiveRecord::Schema.define(:version => 20130117143719) do
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
   create_table "updates", :force => true do |t|
-    t.integer  "destination_unique_id"
+    t.integer  "destination_id"
     t.string   "source"
     t.string   "status"
     t.datetime "reported_at"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
-  add_index "updates", ["destination_unique_id"], :name => "index_updates_on_destination_unique_id"
+  add_index "updates", ["destination_id"], :name => "index_updates_on_destination_id"
   add_index "updates", ["source"], :name => "index_updates_on_source"
 
   create_table "users", :force => true do |t|

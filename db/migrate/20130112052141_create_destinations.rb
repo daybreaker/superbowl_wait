@@ -1,10 +1,10 @@
 class CreateDestinations < ActiveRecord::Migration
   def change
     create_table :destinations do |t|
-      t.string :unique_id, :unique => true
+      t.integer :unique_id
       t.string :destination_type
       t.string :current_status
-      t.timestamp :current_report_time
+      t.datetime :current_report_time
       t.integer :lat
       t.integer :long
       t.string :name

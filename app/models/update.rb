@@ -12,6 +12,6 @@
 #
 
 class Update < ActiveRecord::Base
- attr_accessible :destination_unique_id, :report_at, :status, :source
-
+  attr_accessible :destination_id, :report_at, :status, :source
+  belongs_to :destination
 end
