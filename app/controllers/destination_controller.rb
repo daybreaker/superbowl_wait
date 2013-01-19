@@ -25,11 +25,11 @@ puts "\n**********************************************************\n"
 puts "params = #{params}"
 puts "\n**********************************************************\n" 
     source = 'web'
-    if params[:body].present? && params[:from].present?
+    if params[:Body].present? && params[:From].present?
       # SMS message from Twilio received to webhook
-      unique_id = params[:body].chop
-      status = params[:body][unique_id.length]
-      source = params[:from]
+      unique_id = params[:Body].chop
+      status = params[:Body][unique_id.length]
+      source = params[:From]
     elsif params[:destination][:unique_id].present?     
       unique_id = params[:destination][:unique_id]
       status = params[:destination][:current_status]
