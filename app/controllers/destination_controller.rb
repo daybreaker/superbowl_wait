@@ -24,6 +24,7 @@ class DestinationController < ApplicationController
 puts "\n**********************************************************\n"   
 puts "params = #{params}"
 puts "\n**********************************************************\n" 
+    source = 'web'
     if params[:body].present? && params[:from].present?
       # SMS message from Twilio received to webhook
       unique_id = params[:body].chop
@@ -32,7 +33,6 @@ puts "\n**********************************************************\n"
     elsif params[:destination][:unique_id].present?     
       unique_id = params[:destination][:unique_id]
       status = params[:destination][:current_status]
-      source = 'web'
     else
       @result = "destination could not be found"
     end

@@ -3,7 +3,7 @@ Superbowl::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
  
-  get 'observation' => 'destination#observation'
+  get 'observation' => 'destination#update'
   get 'observation/:unique_id' => 'destination#observation'
   post 'observation' => 'destination#update'
   get 'destination/:unique_id' => 'destination#show'
