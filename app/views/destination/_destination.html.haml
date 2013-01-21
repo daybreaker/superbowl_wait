@@ -1,7 +1,8 @@
 .destination-info
+  %div= @destination.unique_id
+  %div= @destination.name
   %div= @destination.destination_type
-  %div= @destination.closest_section
-  %div= @destination.current_wait_time
+  %div= @destination.current_status
   %div= @destination.current_report_time
 
 %div

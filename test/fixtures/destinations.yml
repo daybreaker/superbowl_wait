@@ -2,24 +2,24 @@
 #
 # Table name: destinations
 #
-#  id                  :integer          not null, primary key
+#  unique_id           :string(255)
 #  destination_type    :string(255)
-#  current_wait_time   :string(255)
+#  current_status      :string(255)
 #  current_report_time :datetime
 #  lat                 :integer
 #  long                :integer
-#  closest_section     :integer
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
 #  name                :string(255)
 #  description         :text
+#  source              :string(255)
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
   type: 
-  current_wait_time: MyString
+  current_status: MyString
   current_report_time: 2013-01-11 23:21:41
   lat: 1
   long: 1
@@ -27,7 +27,7 @@ one:
 
 two:
   type: 
-  current_wait_time: MyString
+  current_status: MyString
   current_report_time: 2013-01-11 23:21:41
   lat: 1
   long: 1

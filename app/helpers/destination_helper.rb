@@ -10,7 +10,7 @@ module DestinationHelper
   end
   
   def classify(destination)
-    destination.current_wait_time ||= 'low'
-    "destination #{destination.destination_type} #{destination.current_wait_time.gsub(' ','_')}"
+    destination.current_status ||= 'low'
+    "destination #{destination.destination_type} #{destination.current_status.gsub(' ','_')}"
   end
 end
