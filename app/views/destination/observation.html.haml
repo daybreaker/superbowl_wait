@@ -1,4 +1,4 @@
 %div= @result
-- unless @destination.nil?
+- unless @destination.nil? || @destination.unique_id.nil?
   %div= render :partial => 'destination'
 %div= render :partial => 'form'
