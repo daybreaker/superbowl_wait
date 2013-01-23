@@ -65,5 +65,9 @@ puts "\n**********************************************************\n"
       render :text => '' and return
     end
   end
+  
+  def get_image  	
+    render :layout => false
+  end
 
 end

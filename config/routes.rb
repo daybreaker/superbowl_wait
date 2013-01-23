@@ -10,5 +10,7 @@ Superbowl::Application.routes.draw do
   post 'destination/observation' => 'destination#observation'
   get 'destination/:unique_id' => 'destination#show'
   
-  root :to => 'destinations#index'
+  match 'get_image' => 'destination#get_image'
+  
+  root :to => 'destination#index'
 end
