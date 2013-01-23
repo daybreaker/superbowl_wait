@@ -6,7 +6,7 @@ class DestinationController < ApplicationController
 
   def show
     @destination = Destination.find_by_unique_id(params[:unique_id])
-    @updates = Update.find_by_destination_unique_id(@destination.unique_id) unless @destination.nil?
+    @updates = Update.find_by_destination_id(@destination.unique_id) unless @destination.nil?
   end
 
   def observation
@@ -30,7 +30,7 @@ puts "\n**********************************************************\n"
       unique_id = params[:Body].chop
       status = params[:Body][unique_id.length]
       source = params[:From]
-    elsif params[:destination][:unique_id].present?     
+    elsif params[:destination].present? && params[:destination][:unique_id].present?     
       unique_id = params[:destination][:unique_id]
       status = params[:destination][:current_status]
     else
@@ -56,7 +56,11 @@ puts "\n**********************************************************\n"
       @result = "destination updated"
     end
     if source == 'web'
-      redirect_to :controller => 'destination', :action => 'observation', :result => @result, :unique_id => @destination_unique_id and return
+      if @result == "destination could not be found"
+        redirect_to  :controller => 'destination', :action => 'observation'  and return
+      else
+        redirect_to :controller => 'destination', :action => 'observation', :result => @result, :unique_id => @destination.unique_id and return
+      end
     else
       render :text => '' and return
     end
