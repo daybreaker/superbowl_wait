@@ -11,20 +11,36 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130117143719) do
+ActiveRecord::Schema.define(:version => 20130123030454) do
+
+  create_table "chunks", :force => true do |t|
+    t.integer  "chunk_number"
+    t.integer  "next_chunk"
+    t.integer  "prev_chunk"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "chunks", ["chunk_number"], :name => "index_chunks_on_chunk_number", :unique => true
+
+  create_table "chunks_sections", :id => false, :force => true do |t|
+    t.integer "chunk_id"
+    t.integer "section_id"
+  end
 
   create_table "destinations", :force => true do |t|
     t.integer  "unique_id"
     t.string   "destination_type"
     t.string   "current_status"
     t.datetime "current_report_time"
-    t.integer  "lat"
-    t.integer  "long"
+    t.string   "lat"
+    t.string   "long"
     t.string   "name"
     t.text     "description"
     t.string   "source"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "lot_size"
   end
 
   add_index "destinations", ["unique_id"], :name => "index_destinations_on_unique_id", :unique => true
@@ -41,6 +57,16 @@ ActiveRecord::Schema.define(:version => 20130117143719) do
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
+
+  create_table "sections", :force => true do |t|
+    t.integer  "section_number"
+    t.integer  "x"
+    t.integer  "y"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "sections", ["section_number"], :name => "index_sections_on_section_number", :unique => true
 
   create_table "updates", :force => true do |t|
     t.integer  "destination_id"

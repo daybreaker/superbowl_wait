@@ -17,12 +17,18 @@
 
 class Destination < ActiveRecord::Base
 
-  attr_accessible :unique_id, :current_report_time, :current_status, :lat, :long, :destination_type, :name, :description, :source, :updates
+  attr_accessible :unique_id, :lot_size, :current_report_time, :current_status, :lat, :long, :destination_type, :name, :description, :source, :updates
   has_many :updates
   
   IMAGE = {
     :width => 1320,  	
     :height => 2393  
   }  
+  
+  STATUSES = {
+    '1' => "low",
+    '2' => "high",
+    '5' => "medium"
+  }
 
 end
