@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(:version => 20130123034346) do
     t.datetime "updated_at",                          :null => false
     t.string   "lot_size"
     t.text     "authorized_phones",   :default => ""
-
   end
 
   add_index "destinations", ["unique_id"], :name => "index_destinations_on_unique_id", :unique => true
