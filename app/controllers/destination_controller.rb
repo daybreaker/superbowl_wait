@@ -106,6 +106,7 @@ class DestinationController < ApplicationController
   #       status = "old", and
   #       source = id of last known update
   def flush
+    return true
     Destination.all.each do |d|
       if d.current_report_time && (Time.now - d.current_report_time) > 1.hour
         unless d.current_status.nil?
