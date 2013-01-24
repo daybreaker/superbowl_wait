@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130123030454) do
+ActiveRecord::Schema.define(:version => 20130123034346) do
 
   create_table "chunks", :force => true do |t|
     t.integer  "chunk_number"
@@ -38,9 +38,10 @@ ActiveRecord::Schema.define(:version => 20130123030454) do
     t.string   "name"
     t.text     "description"
     t.string   "source"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.string   "lot_size"
+    t.text     "authorized_phones",   :default => ""
   end
 
   add_index "destinations", ["unique_id"], :name => "index_destinations_on_unique_id", :unique => true
