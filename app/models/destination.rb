@@ -21,8 +21,8 @@ class Destination < ActiveRecord::Base
   has_many :updates
   
   IMAGE = {
-    :width => 1320,  	
-    :height => 2393  
+    :width => 1564,  	
+    :height => 3040  
   }  
   
   STATUSES = {
