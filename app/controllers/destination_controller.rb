@@ -23,7 +23,7 @@ class DestinationController < ApplicationController
   # handle updates AND SMS status requests
   def update
     source = 'web'
-    flush  #get rid of updates that are too OLD
+    #flush  #get rid of updates that are too OLD
 
     # get the parameters from the POST
     if params[:Body].present? && params[:From].present?
@@ -106,8 +106,8 @@ class DestinationController < ApplicationController
   #       status = "old", and
   #       source = id of last known update
   def flush
-    return true
     Destination.all.each do |d|
+      return true
       if d.current_report_time && (Time.now - d.current_report_time) > 1.hour
         unless d.current_status.nil?
           #save current values in history
