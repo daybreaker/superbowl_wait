@@ -90,6 +90,7 @@ class DestinationController < ApplicationController
         # if this was an update, do NOT send reply
         @text = ''
       end
+      response.content_type = 'text/plain'
       render :text => @text and return
     end
 
