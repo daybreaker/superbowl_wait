@@ -31,5 +31,9 @@ class Destination < ActiveRecord::Base
     '2' => "high",
     '5' => "medium"
   }
+  
+  def stale?
+    current_report_time.blank? || current_report_time < 30.minutes.ago || !STATUSES.include?(current_status)
+  end
 
 end

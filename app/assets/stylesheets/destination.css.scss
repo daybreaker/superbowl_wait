@@ -10,18 +10,57 @@ body {
 #map{
   #destinations{
     .destination{
+      font-family: "Helvetica";
+      background-color: gray;
+      border: 3px double #fff;
+      -moz-border-radius:18px;
+      -webkit-border-radius: 18px;
+      color: white;
+      text-align: center;
+      &._lot {
+        height: 30px;
+        width: 30px;
+        font-size: 22px;
+        line-height: 30px;
+        &.stale{
+          font-size: 27px;
+          font-weight: bold;
+        }
+      }
       &.small_lot {
         height: 30px;
         width: 30px;
+        font-size: 22px;
+        line-height: 30px;
+        &.stale{
+          font-size: 27px;
+          font-weight: bold;
+        }
       }
       &.medium_lot {
         height: 40px;
         width: 40px;
+        -moz-border-radius:23px;
+        -webkit-border-radius: 23px;
+        font-size: 32px;
+        line-height: 40px;
+        &.stale{
+          font-size: 37px;
+          font-weight: bold;
+        }
       }
       
       &.large_lot {
         height: 50px;
         width: 50px;
+        -moz-border-radius:28px;
+        -webkit-border-radius: 28px;
+        font-size: 42px;
+        line-height: 50px;
+        &.stale{
+          font-size: 47px;
+          font-weight: bold;
+        }
       }
       
       &.low{

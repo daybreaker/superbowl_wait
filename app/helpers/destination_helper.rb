@@ -10,7 +10,15 @@ module DestinationHelper
   end
   
   def classify(destination)
-    destination.current_status ||= 'low'
-    "destination #{destination.lot_size}_#{destination.destination_type} #{Destination::STATUSES[destination.current_status.to_s]}"
+    status = destination.stale? ? "stale" : Destination::STATUSES[destination.current_status.to_s]
+    "destination #{destination.lot_size}_#{destination.destination_type} #{status}"
+  end
+  
+  def get_content(destination)
+    if !destination.stale?
+      destination.current_status == Destination::STATUSES.key("high") ? "X" : "P"
+    else
+      "?"
+    end 
   end
 end
