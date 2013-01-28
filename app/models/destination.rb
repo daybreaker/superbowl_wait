@@ -17,7 +17,7 @@
 
 class Destination < ActiveRecord::Base
 
-  attr_accessible :unique_id, :current_report_time, :current_status, :lat, :long, :destination_type, :name, :description, :source, :updates, :lot_size, :authorized_phones, :updates
+  attr_accessible :unique_id, :current_report_time, :current_status, :lat, :long, :destination_type, :name, :description, :source, :updates, :lot_size, :authorized_phones, :updates, :gmap_lat_lng
 
   has_many :updates
   

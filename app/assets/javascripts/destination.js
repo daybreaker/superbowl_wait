@@ -35,7 +35,7 @@ function initialize() {
             position: pos,
             map: map,
             title: 'My Location',
-            icon: 'images/you_are_here.png'
+            icon: 'images/blue_world_small.png'
       });
       google.maps.event.addListener(marker, 'click', function() {
           infowindow.open(map,marker);
@@ -50,12 +50,13 @@ function initialize() {
   }
 
   $.each(Destinations, function(index, value) {
-    if (value["gmapLatLng"] != '') {
-      pos = new google.maps.LatLng(value["gmapLatLng"]);
-      infowindow = new google.maps.InfoWindow({
-        content: 'This is where you are'
+    if (value["gmap_lat_lng"] != '') {
+      var vals = value["gmap_lat_lng"].split(",");
+      var pos = new google.maps.LatLng(parseFloat(vals[0]), parseFloat(vals[1]));
+      var infowindow = new google.maps.InfoWindow({
+        content: value["description"]
       });
-      marker = new google.maps.Marker({
+      var marker = new google.maps.Marker({
             position: pos,
             map: map,
             title: "Parking",
