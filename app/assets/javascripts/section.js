@@ -38,10 +38,15 @@
 
 //  // toggleSectionInput();
 
-//   $('#changeSection').click(function() {
-//     localStorage.removeItem('homeSection');
-//     toggleSectionInput();
-//   });
+
+  // $('#changeSection').click(function() {
+  //   localStorage.removeItem('homeSection');
+  //   toggleSectionInput();
+  // });
+  
+  // $("#key .close").click(function(){
+  //   $("#key").hide();
+  // });
 
   
 

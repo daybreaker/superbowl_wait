@@ -21,4 +21,9 @@ module DestinationHelper
       "?"
     end 
   end
+  
+  def gmap_link(place)
+    param = place.gsub(/[\s\n\r\t]/,"+").gsub(/\+\+/,'+')
+    "https://maps.google.com/maps?q=#{param}"
+  end
 end
