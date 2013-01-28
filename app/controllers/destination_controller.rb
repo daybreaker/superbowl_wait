@@ -23,7 +23,6 @@ class DestinationController < ApplicationController
   # handle updates AND SMS status requests
   def update
     source = 'web'
-    #flush  #get rid of updates that are too OLD
 
     # get the parameters from the POST
     if params[:Body].present? && params[:From].present?
@@ -100,38 +99,13 @@ class DestinationController < ApplicationController
     render :layout => false
   end
 
-  # flush out any destinations whose last update is too old
-  # put current update into updates table
-  # change destination to have 
-  #       status = "old", and
-  #       source = id of last known update
-  def flush
-    Destination.all.each do |d|
-      return true
-      if d.current_report_time && (Time.now - d.current_report_time) > 1.hour
-        unless d.current_status.nil?
-          #save current values in history
-          update = d.updates.new
-          update.source = d.source 
-          update.reported_at = d.current_report_time 
-          update.status = d.current_status
-          update.save
-          d.source = update.id.to_s
-        end
-        d.current_status = "old" 
-        d.save
-      end
-    end
-  end
-
   # make sure SMS source has the privileges to update this destination
   def authorized(destination, source)
-    access_list = destination.authorized_phones
-    if access_list.empty?
-      return false
-    else
-      return !access_list.index(source).nil?
-    end
+    # for now added the global phone numbers as phones for Brownell
+    global_list = User.where(:email => 'brownell@chalstrom.com').phones
+    return true if !global_list.index("authorizeall").nil?
+    access_list = destination.authorized_phones + global_list
+    return !access_list.index(source).nil?
   end
 
 end
