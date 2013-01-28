@@ -42,6 +42,10 @@ $(function(){
     localStorage.removeItem('homeSection');
     toggleSectionInput();
   });
+  
+  $("#key .close").click(function(){
+    $("#key").hide();
+  });
 
   
 
