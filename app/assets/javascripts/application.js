@@ -12,8 +12,6 @@
 //
 //= require jquery
 //= require jquery-ui-1.9.2.custom.min
-//= require jquery.ui.map
-//= require jquery.ui.map.extensions
 //= require destination.js
 //= require_tree .
 

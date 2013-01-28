@@ -2,6 +2,8 @@ class DestinationController < ApplicationController
 
   def index
     @destinations = Destination.all
+    @destinations_json = @destinations.to_json
+    puts @destinations_json.to_s
   end
 
   def show
