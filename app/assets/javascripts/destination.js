@@ -49,21 +49,38 @@ function initialize() {
     handleNoGeolocation(false);
   }
 
+  var openInfoWindow = null;
   $.each(Destinations, function(index, value) {
     if (value["gmap_lat_lng"] != '') {
       var vals = value["gmap_lat_lng"].split(",");
       var pos = new google.maps.LatLng(parseFloat(vals[0]), parseFloat(vals[1]));
-      var infowindow = new google.maps.InfoWindow({
-        content: value["description"]
-      });
+      if (value["current_status"] == "1") { 
+        var icon = 'images/parking_empty.png';
+        var content = "Plenty of Parking at ";
+      } else if (value["current_status"] == "2") { 
+        icon = 'images/parking_full.png';
+        content = "NO PARKING AVAILABLE at ";
+      } else if (value["current_status"] == "5") { 
+        icon = 'images/parking_filling.png'; 
+        content = "Limited parking available at ";
+      } else { 
+        icon = 'images/parking.png'; 
+        content = "Availability unknown at ";
+      }
       var marker = new google.maps.Marker({
             position: pos,
             map: map,
             title: "Parking",
-            icon: 'images/parking.png'
+            icon: icon
+      });
+      var infowindow = new google.maps.InfoWindow({
+        content: content + value["description"],
+        maxWidth: 200
       });
       google.maps.event.addListener(marker, 'click', function() {
+        if (openInfoWindow != null) {openInfoWindow.close();}
           infowindow.open(map,marker);
+          openInfoWindow = infowindow;
       });
     }
   }) 
