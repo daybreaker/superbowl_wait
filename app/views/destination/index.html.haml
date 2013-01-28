@@ -5,11 +5,32 @@
 
   #destinations
     -@destinations.each do |dest|
-      %a{:id =>"destination_#{dest.id.to_s}", :class => classify(dest), :style => "top: #{scale_y(dest.lat)}px; left: #{scale_x(dest.long)}px;", :href => "javascript://", :title => dest.current_report_time.to_s }
+      %a{:id =>"destination_#{dest.id.to_s}", :class => classify(dest), :style => "top: #{scale_y(dest.lat)}px; left: #{scale_x(dest.long)}px;", :href => gmap_link(dest.description), :target => "_blank" }
         = get_content(dest)
         -#if dest.name.present?
           -#.name=dest.name
-
+    
+    #key
+      .key-item
+        %a.destination.small_lot.low
+          P
+        .span
+          ="High Availability"
+      .key-item
+        %a.destination.small_lot.medium
+          P
+        .span
+          ="Lot Crowded - Long wait"
+      .key-item
+        %a.destination.small_lot.high
+          X
+        .span
+          ="Lot Full - Do not use"
+      .key-item
+        %a.destination.small_lot.stale
+          ?
+        .span
+          ="Old data / No data"
 #footer
   © 
   =link_to "OpenStreetMap", "http://www.openstreetmap.org/copyright"
