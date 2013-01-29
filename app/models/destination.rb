@@ -35,5 +35,9 @@ class Destination < ActiveRecord::Base
   def stale?
     current_report_time.blank? || current_report_time < 30.minutes.ago || !STATUSES.include?(current_status)
   end
+  
+  def status
+    stale? ? "stale" : current_status
+  end
 
 end

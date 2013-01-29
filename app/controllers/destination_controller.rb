@@ -1,14 +1,13 @@
 class DestinationController < ApplicationController
 
   def index
-    @destinations = Destination.all
-    @destinations_json = @destinations.to_json
-    puts @destinations_json.to_s
+    @destinations = Destination.all.group_by(&:status).to_json
+    @maps = true
+    puts @destinations.to_s
   end
 
   def show
-    @destination = Destination.find_by_unique_id(params[:unique_id])
-    @updates = Update.find_by_destination_id(@destination.unique_id) unless @destination.nil?
+    
   end
 
   def observation
