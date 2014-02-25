@@ -12,6 +12,6 @@
 //
 //= require jquery
 //= require jquery-ui-1.9.2.custom.min
-//= require destination.js
+//= require jquery.magnific-popup.min
 //= require_tree .
 
