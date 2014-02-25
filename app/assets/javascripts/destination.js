@@ -52,76 +52,55 @@ function initialize() {
 
         
   var openInfoWindow = null;
+  var default_content, icon;
+  icon = 'images/parking.png'; 
+  default_content = "Availability unknown at ";
+  
   $.each(Destinations, function(index, value) {
-    var default_content, icon;
+    var content = default_content;
+    var pos = new google.maps.LatLng(parseFloat(value["lat"]), parseFloat(value["long"]));
     
-    if (value["gmap_lat_lng"] != '') {
-      switch(index){
-        case "1":
-          icon = 'images/parking_empty.png';
-          default_content = "Plenty of Parking at ";
-          break;
-        case "2":
-          icon = 'images/parking_full.png';
-          default_content = "NO PARKING AVAILABLE at ";
-          break;
-        case "5":
-          icon = 'images/parking_filling.png'; 
-          default_content = "Limited parking available at ";
-          break;
-        default:
-          icon = 'images/parking.png'; 
-          default_content = "Availability unknown at ";
+    var marker = new google.maps.Marker({
+        position: pos,
+        map: map,
+        title: "Bathroom",
+        icon: icon
+    });
+    
+            
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        //position.coords.latitude
+        buildInfoWindow(position.coords.latitude, position.coords.longitude);
+
+      }, function(){
+         buildInfoWindow(false, false);
+      });
+      
+    } else {
+      buildInfoWindow(false, false);
+    }
+        
+    function buildInfoWindow(lat, long){
+      var winContent = content + value["description"];
+      
+      if (lat !== false){
+         winContent += '<br /><br /><a href="https://maps.google.com/maps?f=d&source=s_d&saddr=' + lat + ',' + long + '&daddr=' + value["description"].replace(/\s/g,"+") + '" target="_blank">Directions</a>';
       }
       
-      $.each(value, function(index, value){
-        var content = default_content;
-        var vals = value["gmap_lat_lng"].split(",");
-        var pos = new google.maps.LatLng(parseFloat(vals[0]), parseFloat(vals[1]));
-        
-        var marker = new google.maps.Marker({
-            position: pos,
-            map: map,
-            title: "Parking",
-            icon: icon
-        });
-        
-                
-        if(navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(position) {
-            //position.coords.latitude
-            buildInfoWindow(position.coords.latitude, position.coords.longitude);
-
-          }, function(){
-             buildInfoWindow(false, false);
-          });
-          
-        } else {
-          buildInfoWindow(false, false);
-        }
-        
-        function buildInfoWindow(lat, long){
-          var winContent = content + value["description"];
-          
-          if (lat !== false){
-             winContent += '<br /><br /><a href="https://maps.google.com/maps?f=d&source=s_d&saddr=' + lat + ',' + long + '&daddr=' + value["description"].replace(/\s/g,"+") + '" target="_blank">Directions</a>';
-          }
-          
-          var infowindow = new google.maps.InfoWindow({
-            content: winContent,
-            maxWidth: 200
-          });
-          
-          google.maps.event.addListener(marker, 'click', function() {
-            if (openInfoWindow != null) {openInfoWindow.close();}
-              infowindow.open(map,marker);
-              openInfoWindow = infowindow;
-          });
-        
-        }
-        
+      var infowindow = new google.maps.InfoWindow({
+        content: winContent,
+        maxWidth: 200
       });
+      
+      google.maps.event.addListener(marker, 'click', function() {
+        if (openInfoWindow != null) {openInfoWindow.close();}
+          infowindow.open(map,marker);
+          openInfoWindow = infowindow;
+      });
+    
     }
+        
   });
   
 }

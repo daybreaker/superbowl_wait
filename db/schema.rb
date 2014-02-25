@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140225205212) do
+ActiveRecord::Schema.define(:version => 20140225224212) do
 
   create_table "bathrooms", :force => true do |t|
     t.string   "name"
@@ -26,6 +26,9 @@ ActiveRecord::Schema.define(:version => 20140225205212) do
     t.string   "bathroom_privacy"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+    t.string   "tp_quality"
+    t.string   "cost"
+    t.text     "notes"
   end
 
   create_table "destinations", :force => true do |t|
