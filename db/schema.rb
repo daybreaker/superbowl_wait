@@ -11,21 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130128041846) do
+ActiveRecord::Schema.define(:version => 20140225205212) do
 
-  create_table "chunks", :force => true do |t|
-    t.integer  "chunk_number"
-    t.integer  "next_chunk"
-    t.integer  "prev_chunk"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  add_index "chunks", ["chunk_number"], :name => "index_chunks_on_chunk_number", :unique => true
-
-  create_table "chunks_sections", :id => false, :force => true do |t|
-    t.integer "chunk_id"
-    t.integer "section_id"
+  create_table "bathrooms", :force => true do |t|
+    t.string   "name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "lat"
+    t.string   "long"
+    t.string   "bathroom_type"
+    t.string   "bathroom_privacy"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "destinations", :force => true do |t|
@@ -53,22 +53,25 @@ ActiveRecord::Schema.define(:version => 20130128041846) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 8
+    t.integer  "year",       :limit => 5
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
-  create_table "sections", :force => true do |t|
-    t.integer  "section_number"
-    t.integer  "x"
-    t.integer  "y"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+  create_table "ratings", :force => true do |t|
+    t.integer  "overall"
+    t.integer  "cleanliness"
+    t.integer  "comfort"
+    t.integer  "tp"
+    t.integer  "location"
+    t.integer  "bathroom_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
-  add_index "sections", ["section_number"], :name => "index_sections_on_section_number", :unique => true
+  add_index "ratings", ["bathroom_id"], :name => "index_ratings_on_bathroom_id"
 
   create_table "updates", :force => true do |t|
     t.integer  "destination_id"

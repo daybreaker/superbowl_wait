@@ -5,12 +5,12 @@ gem 'rails', '3.2.11'
 gem 'json'
 gem 'pg'
 gem 'jquery-rails'
-gem 'debugger'
 gem "thin"
 gem 'annotate'
 gem 'pusher'
 gem 'devise'
 gem 'rails_admin'
+gem 'sqlite3'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -22,6 +22,10 @@ group :assets do
   # gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :development do
+  gem 'debugger'  
 end
 
 
