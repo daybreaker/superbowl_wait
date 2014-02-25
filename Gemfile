@@ -24,9 +24,13 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-group :development do
+group :development, :test do
   gem 'debugger'  
+  gem 'sqlite3'
 end
 
+group :production do
+  gem 'pg'
+end
 
 # To use debugger
